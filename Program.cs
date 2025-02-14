@@ -1,10 +1,23 @@
-﻿namespace SoftwareDesignExam_37
+﻿using SoftwareDesignExam_37.DB;
+using SoftwareDesignExam_37.Logic;
+using SoftwareDesignExam_37.UI;
+
+namespace SoftwareDesignExam_37
 {
-	internal class Program
+	class Program
 	{
 		static void Main(string[] args)
 		{
-			Console.WriteLine("Hello, World!");
+			using (var context = new MovieDatabaseContext())
+			{
+				var movieLogic = new MovieLogic(context);
+				var showLogic = new ShowLogic(context);
+				var movieMenu = new MovieMenuUI(movieLogic);
+				var showMenu = new ShowMenuUI(showLogic);
+				var mainMenu = new MainMenuUI(movieMenu, showMenu);
+
+				mainMenu.ShowMainMenu();
+			}
 		}
 	}
 }
