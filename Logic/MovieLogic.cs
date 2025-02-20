@@ -112,6 +112,7 @@ namespace SoftwareDesignExam_37.Logic
 				Console.WriteLine($"Year of Release: {movie.YearOfRelease}");
 				Console.WriteLine($"Director: {movie.Director}");
 				Console.WriteLine($"IMDb Score: {movie.ImdbScore}");
+				Console.WriteLine($"MyApp Average Rating: {movie.AverageRating:F1} ({movie.TotalRatings} votes)");
 				Console.WriteLine("====================================");
 				Console.WriteLine();
 			}

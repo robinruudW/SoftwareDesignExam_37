@@ -24,11 +24,11 @@ namespace SoftwareDesignExam_37.Logic
 			string name = Console.ReadLine();
 			Console.WriteLine("Enter the description of the show: ");
 			string description = Console.ReadLine();
-			Console.WriteLine("Enter the year of release of the show: ");
+			Console.WriteLine("Enter the year of release of the show: (needs to be a number) ");
 			int yearOfRelease = int.Parse(Console.ReadLine());
 			Console.WriteLine("Enter the Creator of the show: ");
 			string creator = Console.ReadLine();
-			Console.WriteLine("Enter the imdb score of the show: ");
+			Console.WriteLine("Enter the imdb score of the show: (should be a number between 0-10 with decimals) ");
 			double imdbScore = double.Parse(Console.ReadLine());
 			var show = new Show
 			{
@@ -108,7 +108,8 @@ namespace SoftwareDesignExam_37.Logic
 				Console.WriteLine($"Year of release: {show.YearOfRelease}");
 				Console.WriteLine($"Creator: {show.Creator}");
 				Console.WriteLine($"Imdb score: {show.ImdbScore}");
-				Console.WriteLine($"MyApp score: {show.MyAppScore}");
+				Console.WriteLine($"MyApp Average Rating: {show.AverageRating:F1} ({show.TotalRatings} votes)");
+				Console.WriteLine("====================================");
 			}
 		}
 
