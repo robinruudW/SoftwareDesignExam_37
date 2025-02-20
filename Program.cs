@@ -1,4 +1,6 @@
-﻿using SoftwareDesignExam_37.DB;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using SoftwareDesignExam_37.DB;
 using SoftwareDesignExam_37.Logic;
 using SoftwareDesignExam_37.UI;
 
@@ -8,7 +10,12 @@ namespace SoftwareDesignExam_37
 	{
 		static void Main(string[] args)
 		{
-			using (var context = new MovieDatabaseContext())
+			
+			var options = new DbContextOptionsBuilder<MovieDatabaseContext>()
+				.UseSqlite("Data Source=movies.db")
+				.Options;
+
+			using (var context = new MovieDatabaseContext(options)) 
 			{
 				var movieLogic = new MovieLogic(context);
 				var showLogic = new ShowLogic(context);
@@ -21,3 +28,4 @@ namespace SoftwareDesignExam_37
 		}
 	}
 }
+

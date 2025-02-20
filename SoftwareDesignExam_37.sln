@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareDesignExam_37", "SoftwareDesignExam_37.csproj", "{F9C2733C-0154-487A-A63B-CC38625C0B68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareDesignExam_37.Tests", "..\SoftwareDesignExam_37.Tests\SoftwareDesignExam_37.Tests.csproj", "{6AE75AEA-EEB8-4CF7-8BDB-C2FBA409B0DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F9C2733C-0154-487A-A63B-CC38625C0B68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9C2733C-0154-487A-A63B-CC38625C0B68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9C2733C-0154-487A-A63B-CC38625C0B68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AE75AEA-EEB8-4CF7-8BDB-C2FBA409B0DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AE75AEA-EEB8-4CF7-8BDB-C2FBA409B0DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AE75AEA-EEB8-4CF7-8BDB-C2FBA409B0DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AE75AEA-EEB8-4CF7-8BDB-C2FBA409B0DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
