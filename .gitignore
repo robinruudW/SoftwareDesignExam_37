@@ -1,0 +1,60 @@
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignore compiled files and build artifacts
+*.exe
+*.dll
+*.pdb
+*.appx
+*.appxbundle
+*.appxupload
+*.log
+*.cache
+*.vspscc
+*.vssscc
+*.dbmdl
+
+# Ignore SQLite temporary files
+movies.db-shm
+movies.db-wal
+
+# Ignore build directories
+bin/
+obj/
+out/
+artifacts/
+Binaries/
+
+# Ignore Visual Studio files
+.vs/
+*.suo
+*.user
+
+# Ignore test results
+TestResults/
+.trx
+*.coverage
+*.coveragexml
+
+# Ignore NuGet packages
+packages/
+*.nupkg
+*.snupkg
+.nuget/
+project.lock.json
+project.fragment.lock.json
+
+# Ignore temporary and backup files
+Backup*/
+UpgradeLog*.XML
+UpgradeLog*.htm
+ServiceFabricBackup/
+
+# Ignore Windows/macOS system files
+Thumbs.db
+ehthumbs.db
+*.DS_Store

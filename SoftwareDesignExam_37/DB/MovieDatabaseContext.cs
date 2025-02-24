@@ -18,6 +18,9 @@ namespace SoftwareDesignExam_37.DB
 			if (!optionsBuilder.IsConfigured)
 			{
 				string dbPath = @"C:\Users\robin\OneDrive\Desktop\SoftwareDesignExam_37\SoftwareDesignExam_37\movies.db";
+
+				Console.WriteLine($"Using database at: {dbPath}");
+
 				optionsBuilder.UseSqlite($"Data Source={dbPath}");
 			}
 		}
