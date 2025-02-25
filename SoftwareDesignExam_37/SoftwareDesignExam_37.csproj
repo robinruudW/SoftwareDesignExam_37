@@ -21,8 +21,4 @@
 	  </PackageReference>
   </ItemGroup>
 
-	<Target Name="RunTests" BeforeTargets="Build">
-		<Exec Command="dotnet test --no-build ../SoftwareDesignExam_37.Tests/SoftwareDesignExam_37.Tests.csproj" />
-	</Target>
-
 </Project>
