@@ -22,19 +22,27 @@ namespace SoftwareDesignExam_37.Logic
 		public void AddMovie()
 		{
 			Console.WriteLine("Enter the name of the movie: ");
-			string name = Console.ReadLine();
+			string name = Console.ReadLine() ?? "";
 
 			Console.WriteLine("Enter the description of the movie: ");
-			string description = Console.ReadLine();
+			string description = Console.ReadLine() ?? "";
 
 			Console.WriteLine("Enter the year of release of the movie: ");
-			int yearOfRelease = int.Parse(Console.ReadLine());
+			int yearOfRelease;
+			while (!int.TryParse(Console.ReadLine(), out yearOfRelease))
+			{
+				Console.WriteLine("Invalid input. Please enter a valid year (integer).");
+			}
 
 			Console.WriteLine("Enter the director of the movie: ");
-			string director = Console.ReadLine();
+			string director = Console.ReadLine() ?? "";
 
-			Console.WriteLine("Enter the imdb score of the movie: ");
-			double imdbScore = double.Parse(Console.ReadLine());
+			Console.WriteLine("Enter the IMDb score of the movie: ");
+			double imdbScore;
+			while (!double.TryParse(Console.ReadLine(), out imdbScore))
+			{
+				Console.WriteLine("Invalid input. Please enter a valid IMDb score (decimal number).");
+			}
 
 			var movie = new Movie
 			{
@@ -45,10 +53,18 @@ namespace SoftwareDesignExam_37.Logic
 				ImdbScore = imdbScore
 			};
 
-			_context.Movies.Add(movie);
-			_context.SaveChanges();
-			Console.WriteLine("Movie added successfully!");
+			try
+			{
+				_context.Movies.Add(movie);
+				_context.SaveChanges();
+				Console.WriteLine("Movie added successfully!");
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"Error saving movie: {ex.Message}");
+			}
 		}
+
 
 		public void RemoveMovie()
 		{
@@ -68,31 +84,55 @@ namespace SoftwareDesignExam_37.Logic
 		public void UpdateMovie()
 		{
 			Console.WriteLine("Enter the name of the movie you want to update: ");
-			string name = Console.ReadLine();
+			string name = Console.ReadLine() ?? "";
+
 			var movie = _context.Movies.FirstOrDefault(m => m.Name == name);
 			if (movie == null)
 			{
 				Console.WriteLine("Movie not found!");
 				return;
 			}
+
 			Console.WriteLine("Enter the new name of the movie: ");
-			string newName = Console.ReadLine();
+			string newName = Console.ReadLine() ?? "";
+
 			Console.WriteLine("Enter the new description of the movie: ");
-			string newDescription = Console.ReadLine();
+			string newDescription = Console.ReadLine() ?? "";
+
 			Console.WriteLine("Enter the new year of release of the movie: ");
-			int newYearOfRelease = int.Parse(Console.ReadLine());
+			int newYearOfRelease;
+			while (!int.TryParse(Console.ReadLine(), out newYearOfRelease))
+			{
+				Console.WriteLine("Invalid input. Please enter a valid year (integer).");
+			}
+
 			Console.WriteLine("Enter the new director of the movie: ");
-			string newDirector = Console.ReadLine();
-			Console.WriteLine("Enter the new imdb score of the movie: ");
-			double newImdbScore = double.Parse(Console.ReadLine());
+			string newDirector = Console.ReadLine() ?? "";
+
+			Console.WriteLine("Enter the new IMDb score of the movie: ");
+			double newImdbScore;
+			while (!double.TryParse(Console.ReadLine(), out newImdbScore))
+			{
+				Console.WriteLine("Invalid input. Please enter a valid IMDb score (decimal number).");
+			}
+
 			movie.Name = newName;
 			movie.Description = newDescription;
 			movie.YearOfRelease = newYearOfRelease;
 			movie.Director = newDirector;
 			movie.ImdbScore = newImdbScore;
-			_context.SaveChanges();
-			Console.WriteLine("Movie updated successfully!");
+
+			try
+			{
+				_context.SaveChanges();
+				Console.WriteLine("Movie updated successfully!");
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"Error updating movie: {ex.Message}");
+			}
 		}
+
 
 		public void ListMovies()
 		{

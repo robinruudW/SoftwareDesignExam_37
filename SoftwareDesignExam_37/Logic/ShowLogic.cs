@@ -21,15 +21,28 @@ namespace SoftwareDesignExam_37.Logic
 		public void AddShow()
 		{
 			Console.WriteLine("Enter the name of the show: ");
-			string name = Console.ReadLine();
+			string name = Console.ReadLine() ?? "";
+
 			Console.WriteLine("Enter the description of the show: ");
-			string description = Console.ReadLine();
-			Console.WriteLine("Enter the year of release of the show: (needs to be a number) ");
-			int yearOfRelease = int.Parse(Console.ReadLine());
+			string description = Console.ReadLine() ?? "";
+
+			Console.WriteLine("Enter the year of release of the show: (needs to be a number)");
+			int yearOfRelease;
+			while (!int.TryParse(Console.ReadLine(), out yearOfRelease))
+			{
+				Console.WriteLine("Invalid input. Please enter a valid year (integer).");
+			}
+
 			Console.WriteLine("Enter the Creator of the show: ");
-			string creator = Console.ReadLine();
-			Console.WriteLine("Enter the imdb score of the show: (should be a number between 0-10 with decimals) ");
-			double imdbScore = double.Parse(Console.ReadLine());
+			string creator = Console.ReadLine() ?? "";
+
+			Console.WriteLine("Enter the IMDb score of the show: (should be a number between 0-10 with decimals)");
+			double imdbScore;
+			while (!double.TryParse(Console.ReadLine(), out imdbScore) || imdbScore < 0 || imdbScore > 10)
+			{
+				Console.WriteLine("Invalid input. Please enter a valid IMDb score (decimal number between 0-10).");
+			}
+
 			var show = new Show
 			{
 				Name = name,
@@ -38,11 +51,19 @@ namespace SoftwareDesignExam_37.Logic
 				Creator = creator,
 				ImdbScore = imdbScore
 			};
-			_context.Shows.Add(show);
-			_context.SaveChanges();
-			Console.WriteLine("Show added successfully!");
 
+			try
+			{
+				_context.Shows.Add(show);
+				_context.SaveChanges();
+				Console.WriteLine("Show added successfully!");
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"Error adding show: {ex.Message}");
+			}
 		}
+
 
 		public void RemoveShow()
 		{
@@ -63,33 +84,56 @@ namespace SoftwareDesignExam_37.Logic
 
 		public void UpdateShow()
 		{
-			Console.WriteLine("enter the name of the show you want to update: ");
-			string name = Console.ReadLine();
+			Console.WriteLine("Enter the name of the show you want to update: ");
+			string name = Console.ReadLine() ?? "";
+
 			var show = _context.Shows.FirstOrDefault(s => s.Name == name);
 			if (show == null)
 			{
 				Console.WriteLine("Show not found!");
 				return;
 			}
+
 			Console.WriteLine("Enter the new name of the show: ");
-			string newName = Console.ReadLine();
+			string newName = Console.ReadLine() ?? "";
+
 			Console.WriteLine("Enter the new description of the show: ");
-			string newDescription = Console.ReadLine();
+			string newDescription = Console.ReadLine() ?? "";
+
 			Console.WriteLine("Enter the new year of release of the show: ");
-			int newYearOfRelease = int.Parse(Console.ReadLine());
+			int newYearOfRelease;
+			while (!int.TryParse(Console.ReadLine(), out newYearOfRelease))
+			{
+				Console.WriteLine("Invalid input. Please enter a valid year (integer).");
+			}
+
 			Console.WriteLine("Enter the new Creator of the show: ");
-			string newCreator = Console.ReadLine();
-			Console.WriteLine("Enter the new imdb score of the show: ");
-			double newImdbScore = double.Parse(Console.ReadLine());
+			string newCreator = Console.ReadLine() ?? "";
+
+			Console.WriteLine("Enter the new IMDb score of the show: (should be a number between 0-10 with decimals)");
+			double newImdbScore;
+			while (!double.TryParse(Console.ReadLine(), out newImdbScore) || newImdbScore < 0 || newImdbScore > 10)
+			{
+				Console.WriteLine("Invalid input. Please enter a valid IMDb score (decimal number between 0-10).");
+			}
+
 			show.Name = newName;
 			show.Description = newDescription;
 			show.YearOfRelease = newYearOfRelease;
 			show.Creator = newCreator;
 			show.ImdbScore = newImdbScore;
-			_context.SaveChanges();
-			Console.WriteLine("Show updated successfully!");
 
+			try
+			{
+				_context.SaveChanges();
+				Console.WriteLine("Show updated successfully!");
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"Error updating show: {ex.Message}");
+			}
 		}
+
 
 		public void ListShows()
 		{
